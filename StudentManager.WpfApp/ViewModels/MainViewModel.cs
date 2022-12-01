@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Repository.Logic;
-using Repository.Logic.Models;
 using Repository.Logic.Repos;
+using Logic = Repository.Logic;
 
 namespace StudentManager.WpfApp.ViewModels
 {
@@ -19,14 +13,14 @@ namespace StudentManager.WpfApp.ViewModels
         public MainViewModel()
         {
         }
-        public ObservableCollection<Student> Students
+        public ObservableCollection<Logic.Models.Student> Students
         {
             get
             {
                 var studentRepo = new StudentRepository(StudentFilePath);
                 var students = studentRepo.GetAll();
 
-                return new ObservableCollection<Student>(students);
+                return new ObservableCollection<Logic.Models.Student>(students);
             }
         }
 
@@ -56,9 +50,9 @@ namespace StudentManager.WpfApp.ViewModels
         {
             // ToDo
         }
-        private Student? selectedItem;
+        private Logic.Models.Student? selectedItem;
 
-        public Student? SelectedItem
+        public Logic.Models.Student? SelectedItem
         {
             get { return selectedItem; }
             set 

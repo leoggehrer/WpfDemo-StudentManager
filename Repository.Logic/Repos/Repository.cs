@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Reflection;
+using System.Text.Json;
 
 namespace Repository.Logic.Repos
 {
@@ -62,7 +63,7 @@ namespace Repository.Logic.Repos
         #region Update
         public virtual bool Update(TModel model)
         {
-            var listModel = GetById(model.Id);
+            var listModel = modelList.FirstOrDefault(m => m.Id == model.Id);
 
             if (listModel != null)
             {
@@ -80,11 +81,11 @@ namespace Repository.Logic.Repos
         #region Delete
         public virtual void Delete(int id)
         {
-            var model = GetById(id);
+            var listModel = modelList.FirstOrDefault(m => m.Id == id);
 
-            if (model != null)
+            if (listModel != null)
             {
-                modelList.Remove(model);
+                modelList.Remove(listModel);
             }
         }
         public virtual Task DeleteAsync(int id)
